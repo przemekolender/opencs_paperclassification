@@ -1,8 +1,9 @@
 import docker
 from config import *
+from typing import List
 
 
-def start_docker_containers() -> list[docker.models.containers.Container]:
+def start_docker_containers() -> List[docker.models.containers.Container]:
     client = docker.from_env()
     pull_images(client, ES_IMAGE, KB_IMAGE)
 
@@ -21,12 +22,12 @@ def start_docker_containers() -> list[docker.models.containers.Container]:
     return containers
 
 
-def stop_docker_containers(containers: list[docker.models.containers.Container]):
+def stop_docker_containers(containers: List[docker.models.containers.Container]):
     for container in containers:
         container.stop()
 
 
-def remove_docker_containers(containers: list[docker.models.containers.Container]):
+def remove_docker_containers(containers: List[docker.models.containers.Container]):
     for container in containers:
         container.stop()
         container.remove()
