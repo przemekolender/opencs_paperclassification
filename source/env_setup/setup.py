@@ -1,6 +1,8 @@
 import docker
 from config import *
-from typing import List
+from typing import List, Dict
+from elasticsearch import Elasticsearch
+
 
 
 def start_docker_containers() -> List[docker.models.containers.Container]:
@@ -21,7 +23,6 @@ def start_docker_containers() -> List[docker.models.containers.Container]:
 
     return containers
 
-
 def stop_docker_containers(containers: List[docker.models.containers.Container]):
     for container in containers:
         container.stop()
@@ -32,7 +33,6 @@ def remove_docker_containers(containers: List[docker.models.containers.Container
         container.stop()
         container.remove()
 
-
 def pull_images(client: docker.DockerClient, es_image: str, kb_image: str):
     # pull elasticsearch
     image = client.images.pull(es_image)
@@ -41,7 +41,6 @@ def pull_images(client: docker.DockerClient, es_image: str, kb_image: str):
     # pull kibana
     image = client.images.pull(kb_image)
     print(image)
-
 
 def create_docker_network(client: docker.DockerClient, network_name: str):
     try:
@@ -63,7 +62,6 @@ def start_es_container(client: docker.DockerClient, image: str, container_name: 
 
     return container
 
-
 def start_kb_container(client: docker.DockerClient, image: str, container_name: str, network: str, environment: dict,
                        ports: dict):
     container = client.containers.run(
@@ -76,3 +74,12 @@ def start_kb_container(client: docker.DockerClient, image: str, container_name: 
     container.logs()
 
     return container
+
+def connect_elasticsearch(es_config: Dict[str, str]={'host': 'localhost', 'port': 9200}):
+    _es = None
+    _es = Elasticsearch([es_config])
+    if _es.ping():
+        print('Yay Connected')
+    else:
+        print('Awww it could not connect!')
+    return _es

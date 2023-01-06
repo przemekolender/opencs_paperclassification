@@ -22,3 +22,6 @@ KB_PORTS = {5601:5601}
 
 # docker network
 NETWORK = 'elastic_net'
+
+# index
+IDX_NAME = 'ontology_index'
