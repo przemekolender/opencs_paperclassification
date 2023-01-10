@@ -6,6 +6,7 @@ from os import path
 ENV_PATH = path.join(r"C:\Users\golik\.conda\envs\opencs_paperclassification")
 BASE_DIR = path.join(r"C:\Users\golik\Desktop\mgr\semantic\project\opencs_paperclassification")
 DATA_DIR = path.join(BASE_DIR, "data")
+RESULT_DIR = path.join(BASE_DIR, "results")
 ONTOLOGY_DIR = path.join(r"D:\OpenCS\OpenCS")
 ONTOLOGY_CORE_DIR = path.join(ONTOLOGY_DIR, r"ontology\core" )
 
@@ -19,6 +20,8 @@ KB_CONTAINER_NAME = "opencs-pc-kb"
 
 ES_PORTS = {9200:9200, 9300:9300}
 KB_PORTS = {5601:5601}
+
+PORT = list(ES_PORTS.keys())[0]
 
 # docker network
 NETWORK = 'elastic_net'

@@ -1,5 +1,5 @@
 from typing import Dict
-from source.es_index.IIndexBuilder import IIndex
+from source.es_index.IIndexBuilder import IIndexBuilder
 import requests 
 import json
 from source.env_setup.setup import connect_elasticsearch
@@ -18,7 +18,7 @@ def store_record(es_object, index, data):
     finally:
         return is_stored
 
-def build_index(index_builder: IIndex, es_config: Dict[str, str]={'host': 'localhost', 'port': 9200}, idx_name: str='ontology'):
+def build_index(index_builder: IIndexBuilder, es_config: Dict[str, str]={'host': 'localhost', 'port': 9200}, idx_name: str='ontology'):
     try:
         template = index_builder.get_template()
         create_index(str(template), es_config, idx_name)
