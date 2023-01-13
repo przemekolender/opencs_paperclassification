@@ -116,6 +116,15 @@ build_index(index_builder, es_config={'host': 'localhost', 'port': PORT}, idx_na
 ```
 **IndexBaseline** implements **IIndexBuilder** and aims to build a baseline index, i. e., index where each column is defined as a predicate from the ontology. The `pred_uri_to_idx_colname` argument is a dictionary defining all columns - which predicates to use (their URIs and column names), the `graphs` are parsed ontology files by `rdflib`, and the `include_concept_type` determines whether to use a column corresponding to the type ('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'). The default is `False` because usually concept type literals (e.g., 'C111') are irrelevant for topical paper classification.
 
+Note that `pred_uri_to_idx_colname` can be derived from the ontology automatically (using all present predicates as columns):
+```python
+from source.ontology_parsing.graph_utils import get_uri_to_colname_dict_from_ontology
+
+
+
+pred_uri_to_idx_colname = get_uri_to_colname_dict_from_ontology(graphs)
+```
+
 **TO DO** TODO
 
 ### Querying the index
