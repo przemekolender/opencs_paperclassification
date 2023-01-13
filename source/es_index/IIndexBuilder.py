@@ -12,7 +12,7 @@ class IIndexBuilder(ABC):
         self.idx_colnames = idx_colnames
 
     @abstractmethod
-    def get_template(self, predicate_names: List[str]) -> Dict:
+    def get_template(self) -> Dict:
         pass
 
     @abstractmethod

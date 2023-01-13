@@ -2,13 +2,19 @@ from os import path
 
 
 
-# paths
+### paths ###
+
 ENV_PATH = path.join(r"C:\Users\golik\.conda\envs\opencs_paperclassification")
 BASE_DIR = path.join(r"C:\Users\golik\Desktop\mgr\semantic\project\opencs_paperclassification")
+ONTOLOGY_DIR = path.join(r"D:\OpenCS\OpenCS")
+
 DATA_DIR = path.join(BASE_DIR, "data")
 RESULT_DIR = path.join(BASE_DIR, "results")
-ONTOLOGY_DIR = path.join(r"D:\OpenCS\OpenCS")
 ONTOLOGY_CORE_DIR = path.join(ONTOLOGY_DIR, r"ontology\core" )
+
+##############
+
+### docker ###
 
 # docker images
 ES_IMAGE = "docker.elastic.co/elasticsearch/elasticsearch:7.12.1"
@@ -26,5 +32,10 @@ PORT = list(ES_PORTS.keys())[0]
 # docker network
 NETWORK = 'elastic_net'
 
-# index
+##############
+
+### Elastic Search index ###
 IDX_NAME = 'ontology_index'
+
+
+#############
