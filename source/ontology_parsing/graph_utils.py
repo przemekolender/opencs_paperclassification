@@ -35,4 +35,4 @@ def get_concepts_pref_labels(graphs: List[Graph]) -> Dict[str, str]:
 
 def get_uri_to_colname_dict_from_ontology(graphs, uri_name_split_char='#'):
     _, pred_uris, _ = get_unique_spo_from_graphs(graphs)
-    return { p: p.split(uri_name_split_char)[-1] for p in pred_uris }
+    return { str(p): p.split(uri_name_split_char)[-1] for p in pred_uris }
